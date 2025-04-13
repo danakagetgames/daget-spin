@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roda Spin - AP STORE MEDIA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-image: url('dana kaget.png');
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(5px);
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 40px;
+    }
+    h1 {
+      font-family: 'Special Elite', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    #wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+    #wheel {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 5px solid red;
+      background: black;
+      overflow: hidden;
+      transition: transform 4s ease-out;
+    }
+    .segment {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      background-color: black;
+      border-right: 2px solid red;
+      border-bottom: 2px solid red;
+      transform-origin: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+    .segment.win {
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border-right: none;
+    }
+    .segment div {
+      position: relative;
+      transform: rotate(18deg);
+      width: 100%;
+      text-align: right;
+      padding-right: 10px;
+      border-left: 1px solid red;
+    }
+    .segment img {
+      width: 20px;
+      height: 20px;
+    }
+    #spin-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: yellow;
+      color: black;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2;
+    }
+    #pointer {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 40px;
+      color: yellow;
+      z-index: 3;
+    }
+    @media (max-width: 500px) {
+      #wheel-container {
+        width: 250px;
+        height: 250px;
+      }
+      #spin-button {
+        width: 60px;
+        height: 60px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 style="font-size: 36px; font-weight: bold;">AP STORE MEDIA</h1>
+  <div id="wheel-container">
+   <div id="pointer">
+  <img src="https://png.pngtree.com/png-clipart/20220206/original/pngtree-down-arrow-curved-red-png-image_7264067.png" alt="Panah" style="width: 40px; height: 40px;" />
+</div>
+
+    <div id="wheel"></div>
+    <button id="spin-button">SPIN</button>
+  </div>
+  <h2 style="margin-top: 30px; font-size: 24px; font-weight: bold; color: white;">DANA KAGET GAMES</h2>
+  <audio id="spinSound" src="circus-fun-energy-clown-233408.mp3" preload="auto"></audio>
+
+  <script>
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spin-button');
+    const spinSound = document.getElementById('spinSound');
+
+    const outcomes = [2, 8, 6, 1, 10];
+    let spinCount = 0;
+
+    const segments = 10;
+    const deg = 360 / segments;
+
+    const labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+    labels.forEach((label, i) => {
+  const seg = document.createElement('div');
+  seg.className = 'segment';
+  if (label === '10') seg.classList.add('win');
+  seg.style.transform = `rotate(${i * deg}deg)`;
+  seg.innerHTML = `<div><img src="https://png.pngtree.com/png-clipart/20221001/ourmid/pngtree-3d-realistic-gift-box-with-red-color-and-gold-tape-png-image_6249154.png" alt="gift" width="80" height="80" /></div>`;
+  wheel.appendChild(seg);
+});
+
+
+
+    spinBtn.addEventListener('click', () => {
+      if (spinCount >= outcomes.length) return;
+      const current = outcomes[spinCount];
+      const index = labels.indexOf(current.toString());
+      const angle = 360 * 5 + (360 - index * deg - deg / 2);
+
+      spinSound.play();
+
+      wheel.style.transform = `rotate(${angle}deg)`;
+
+      spinCount++;
+
+      setTimeout(() => {
+        if (spinCount === 5) {
+          window.open('https://link.dana.id/danakaget?c=sf9djsr6g&r=ia9y6T&orderId=20250413101214719415010300166614917462311', '_blank');
+        } else if (spinCount === 2) {
+          window.open('https://www.profitableratecpm.com/yamni9dbt?key=b956ec41faa2ec0369d5878ca215496c', '_blank');
+        } else if (spinCount === 3) {
+          window.open('https://www.profitableratecpm.com/yamni9dbt?key=b956ec41faa2ec0369d5878ca215496c', '_blank');
+        } else {
+          window.open('https://www.profitableratecpm.com/yamni9dbt?key=b956ec41faa2ec0369d5878ca215496c', '_blank');
+        }
+      }, 4500);
+    });
+  </script>
+</body>
+</html>
